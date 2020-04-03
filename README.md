@@ -41,7 +41,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-  media: service(),
+  responsive: service(),
   doSomething() {
     this.get('media.isMobile'); // => true
   }
@@ -51,7 +51,7 @@ export default Controller.extend({
 In your templates you have access to the `media` helper that allows you to query breakpoints easily.
 
 ```hbs
-{{#if (media 'isDesktop')}}
+{{#if (responsive 'isDesktop')}}
   Desktop view!
 {{/if}}
 ```
@@ -63,7 +63,7 @@ queries in CSS, instead simply use classes to style the different devices.
 In your application.hbs template:
 
 ```hbs
-<div class="{{media 'classNames'}}">
+<div class="{{responsive 'classNames'}}">
   {{outlet}}
 </div>
 ```
@@ -77,8 +77,8 @@ If you find explicitly injecting the service too repetitive, you can setup an in
 export default {
   name: 'responsive',
   initialize(application) {
-    application.inject('controller', 'media', 'service:media');
-    application.inject('component', 'media', 'service:media');
+    application.inject('controller', 'responsive', 'service:responsive');
+    application.inject('component', 'responsive', 'service:responsive');
   }
 };
 ```
