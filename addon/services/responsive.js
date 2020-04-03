@@ -74,7 +74,7 @@ import Evented from '@ember/object/evented';
 *
 * @module    ember-responsive
 * @namespace Ember.Responsive
-* @class     Media
+* @class     Responsive
 * @extends   Ember.Object
 */
 export default Service.extend(Evented, {
@@ -147,7 +147,7 @@ export default Service.extend(Evented, {
   */
   classNames: computed('matches.[]', function() {
     return this.get('matches').map(function(name) {
-      return `media-${dasherize(name)}`;
+      return `responsive-${dasherize(name)}`;
     }).join(' ');
   }),
 

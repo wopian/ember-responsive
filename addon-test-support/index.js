@@ -5,11 +5,11 @@ export function setBreakpoint(breakpoint) {
   let breakpointArray = Array.isArray(breakpoint) ? breakpoint : [breakpoint];
   let { owner } = getContext();
   let breakpoints = owner.lookup('breakpoints:main');
-  let media = owner.lookup('service:media');
+  let responsive = owner.lookup('service:responsive');
 
   for (let breakpointName of breakpointArray) {
     if (breakpointName === 'auto') {
-      media.set('_mocked', false);
+      responsive.set('_mocked', false);
       return;
     }
 
@@ -18,11 +18,11 @@ export function setBreakpoint(breakpoint) {
     }
   }
 
-  let matches = media.get('matches');
+  let matches = responsive.get('matches');
   run(() => {
     matches.clear();
     matches.addObjects(breakpointArray);
-    media._triggerMediaChanged();
+    responsive._triggerMediaChanged();
   });
   return settled();
 }

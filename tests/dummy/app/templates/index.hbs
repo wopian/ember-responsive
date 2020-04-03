@@ -2,29 +2,29 @@
   <p>
       This demonstrates the default media queries:
   </p>
-  <div class="view {{if (media 'isMobile') 'active'}}">
-    {{#if (media 'isMobile')}}
+  <div class="view {{if (responsive 'isMobile') 'active'}}">
+    {{#if (responsive 'isMobile')}}
         Mobile View!
     {{else}}
         Not Mobile View :(
     {{/if}}
   </div>
-  <div class="view {{if (media 'isTablet') 'active'}}">
-    {{#if (media 'isTablet')}}
+  <div class="view {{if (responsive 'isTablet') 'active'}}">
+    {{#if (responsive 'isTablet')}}
         Tablet View!
     {{else}}
         Not Tablet View :(
     {{/if}}
   </div>
-  <div class="view {{if (media 'isDesktop') 'active'}}">
-    {{#if (media 'isDesktop')}}
+  <div class="view {{if (responsive 'isDesktop') 'active'}}">
+    {{#if (responsive 'isDesktop')}}
         Desktop View!
     {{else}}
         Not Desktop View :(
     {{/if}}
   </div>
-  <div class="view {{if (media 'isJumbo') 'active'}}">
-    {{#if (media 'isJumbo')}}
+  <div class="view {{if (responsive 'isJumbo') 'active'}}">
+    {{#if (responsive 'isJumbo')}}
         Jumbo View!
     {{else}}
         Not Jumbo View :(

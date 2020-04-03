@@ -5,14 +5,14 @@ import { get } from '@ember/object';
 export default Helper.extend({
   init() {
     this._super(...arguments);
-    this.get('media').on('mediaChanged', () => {
+    this.get('responsive').on('mediaChanged', () => {
       this.recompute();
     });
   },
 
-  media: service(),
+  responsive: service(),
 
   compute([prop]) {
-    return get(this, `media.${prop}`);
+    return get(this, `responsive.${prop}`);
   }
 });

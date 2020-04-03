@@ -16,16 +16,16 @@ module('Test Helpers | setBreakpoint', function(hooks) {
     }, { instantiate: false });
 
     this.owner.register('component:dummy-component', Component.extend({
-      media: service()
+      responsive: service()
     }));
   });
 
   test('The default breakpoint in test is "desktop"', async function(assert) {
     let subject = this.owner.factoryFor('component:dummy-component').create();
-    assert.equal(subject.get('media.isDesktop'), true);
-    assert.equal(subject.get('media.isTablet'), false);
-    assert.equal(subject.get('media.isMobile'), false);
-    assert.equal(subject.get('media.classNames'), 'media-desktop');
+    assert.equal(subject.get('responsive.isDesktop'), true);
+    assert.equal(subject.get('responsive.isTablet'), false);
+    assert.equal(subject.get('responsive.isMobile'), false);
+    assert.equal(subject.get('responsive.classNames'), 'responsive-desktop');
   });
 
   test('if `setBreakpoint` is called with an unknown breakpoint name, it throws an error', function (assert) {
@@ -37,20 +37,20 @@ module('Test Helpers | setBreakpoint', function(hooks) {
   test('`setBreakpoint` can change the media information', function(assert) {
     setBreakpoint('tablet');
     let subject = this.owner.factoryFor('component:dummy-component').create();
-    assert.equal(subject.get('media.isDesktop'), false);
-    assert.equal(subject.get('media.isTablet'), true);
-    assert.equal(subject.get('media.isMobile'), false);
-    assert.equal(subject.get('media.classNames'), 'media-tablet');
-    assert.deepEqual(subject.get('media.matches'), ['tablet']);
+    assert.equal(subject.get('responsive.isDesktop'), false);
+    assert.equal(subject.get('responsive.isTablet'), true);
+    assert.equal(subject.get('responsive.isMobile'), false);
+    assert.equal(subject.get('responsive.classNames'), 'responsive-tablet');
+    assert.deepEqual(subject.get('responsive.matches'), ['tablet']);
   });
 
   test('`setBreakpoint` can be "awaited" to ensure the template has updated', async function(assert) {
     setBreakpoint("tablet");
     await this.render(hbs`
       <div id="dom-target">
-        {{#if (media "isMobile")}}
+        {{#if (responsive "isMobile")}}
           Mobile
-        {{else if (media "isTablet")}}
+        {{else if (responsive "isTablet")}}
           Tablet
         {{else}}
           Desktop
@@ -69,8 +69,8 @@ module('Test Helpers | setBreakpoint', function(hooks) {
     setBreakpoint(['mobile', 'tablet']);
     let subject = this.owner.factoryFor('component:dummy-component').create();
 
-    assert.equal(subject.get('media.isDesktop'), false);
-    assert.equal(subject.get('media.isTablet'), true);
-    assert.equal(subject.get('media.isMobile'), true);
+    assert.equal(subject.get('responsive.isDesktop'), false);
+    assert.equal(subject.get('responsive.isTablet'), true);
+    assert.equal(subject.get('responsive.isMobile'), true);
   });
 });
